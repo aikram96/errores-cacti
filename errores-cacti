@@ -1,0 +1,32 @@
+//Algunos errorres que encontré al poner la ip de CENTOS7 en mi chrome or mozilla fueron ... //
+
+--- mysql timezone setup steps ---
+
+#mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql // entro a mariaDB
+---> Enter ur psswd: ****
+#mysql> use mysql;
+#mysql> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost;
+#mysql> flush privileges;
+
+---> Esto solucionará los problemas con respecto a mariaDB
+
+--- y el mayor problema con el que me enfrente fue spine ---
+
+# yum -y install autoconf automake gcc mysql mysql-devel net-snmp-devel libtool openssl-devel dos2unix
+# cd /tmp
+# wget http://www.cacti.net/downloads/spine/cacti-spine-1.1.16.tar.gz // --> ya que instale la version 1.1.16 de cacti, hago lo mismo aqui
+# tar xzvf cacti-spine-1.1.16.tar.gz
+# cd cacti-spine-1.1.16
+# ./bootstrap
+# ./configure
+# make
+# make install
+#chown root:root /usr/local/spine/bin/spine
+#chmod +s /usr/local/spine/bin/spine
+# ls -lt /usr/local/spine/bin/
+# cp spine.conf.dist /etc/spine.conf
+# vi  /etc/spine.conf
+#  /usr/local/spine/bin/spine
+---> Cuando te cargue existosamente sin errores, refresca la página web donde estas accediento a cacti desde el browser y no habrás mas errores
+
+
